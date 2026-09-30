@@ -8,6 +8,8 @@ interface CurrentWeatherProps {
 
 export default function CurrentWeather({ weather, unit }: CurrentWeatherProps) {
   const { city, current } = weather;
+  const weatherLabel =
+    current.weatherCode === null ? 'Condição indisponível' : getWeatherLabel(current.weatherCode);
 
   return (
     <section
@@ -26,25 +28,35 @@ export default function CurrentWeather({ weather, unit }: CurrentWeatherProps) {
               {city.admin1}, {city.country}
             </p>
           </div>
-          <div className="text-6xl" role="img" aria-label={getWeatherLabel(current.weatherCode)}>
-            {getWeatherIcon(current.weatherCode)}
+          <div className="text-6xl" role="img" aria-label={weatherLabel}>
+            {current.weatherCode === null ? '—' : getWeatherIcon(current.weatherCode)}
           </div>
         </div>
 
         <div className="mt-8 flex items-end gap-3">
           <span className="text-7xl font-semibold tracking-tight text-white sm:text-8xl">
-            {formatTemperature(current.temperature, unit)}
+            {current.temperature === null ? '—' : formatTemperature(current.temperature, unit)}
           </span>
-          <span className="mb-3 text-base text-slate-300">
-            {getWeatherLabel(current.weatherCode)}
-          </span>
+          <span className="mb-3 text-base text-slate-300">{weatherLabel}</span>
         </div>
 
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          <Metric label="Umidade" value={`${current.humidity}%`} />
-          <Metric label="Vento" value={`${current.windSpeed} km/h`} />
-          <Metric label="Pressão" value={`${current.pressure} hPa`} />
-          <Metric label="Chuva" value={`${current.precipitation} mm`} />
+          <Metric
+            label="Umidade"
+            value={current.humidity === null ? '—' : `${current.humidity}%`}
+          />
+          <Metric
+            label="Vento"
+            value={current.windSpeed === null ? '—' : `${current.windSpeed} km/h`}
+          />
+          <Metric
+            label="Pressão"
+            value={current.pressure === null ? '—' : `${current.pressure} hPa`}
+          />
+          <Metric
+            label="Chuva"
+            value={current.precipitation === null ? '—' : `${current.precipitation} mm`}
+          />
         </div>
       </div>
     </section>
