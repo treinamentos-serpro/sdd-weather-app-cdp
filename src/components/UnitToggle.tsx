@@ -19,7 +19,7 @@ export default function UnitToggle({ unit, onChange }: UnitToggleProps) {
         return (
           <button
             aria-pressed={isActive}
-            className={`min-w-12 rounded-lg px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-accent-400 ${
+            className={`min-w-12 rounded-lg px-3 py-2 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-400 ${
               isActive
                 ? 'bg-accent-500 text-white shadow-lg shadow-accent-500/20'
                 : 'text-slate-400 hover:text-white'

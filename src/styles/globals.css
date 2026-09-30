@@ -19,3 +19,8 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+
+:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 3px;
+}

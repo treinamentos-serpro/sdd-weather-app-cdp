@@ -7,24 +7,26 @@ export interface City {
   admin1: string;
   latitude: number;
   longitude: number;
+  timezone?: string;
 }
 
 export interface CurrentWeather {
   time: string;
-  temperature: number;
-  humidity: number;
-  windSpeed: number;
-  pressure: number;
-  precipitation: number;
-  weatherCode: number;
+  temperature: number | null;
+  humidity: number | null;
+  windSpeed: number | null;
+  pressure: number | null;
+  precipitation: number | null;
+  weatherCode: number | null;
 }
 
 export interface ForecastDay {
   date: string;
-  min: number;
-  max: number;
-  weatherCode: number;
-  precipitationProbability: number;
+  min: number | null;
+  max: number | null;
+  humidity: number | null;
+  weatherCode: number | null;
+  precipitationProbability: number | null;
 }
 
 export interface WeatherData {
